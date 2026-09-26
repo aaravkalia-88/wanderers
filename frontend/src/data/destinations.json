@@ -1,0 +1,782 @@
+[
+  {
+    "id": 2,
+    "name": "Barot",
+    "state": "Himachal Pradesh",
+    "category": "Wildlife gateway",
+    "latitude": 32.01722,
+    "longitude": 76.76554,
+    "description": "A quiet Uhl River settlement with trout, a British-built reservoir, and access to Nargu Wildlife Sanctuary.",
+    "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Mountains",
+    "budget_per_day": 1800,
+    "duration": 3,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Walk the valley trails",
+      "Find a quiet viewpoint",
+      "Explore with a local guide"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Mawphlang Sacred Groves",
+    "state": "Meghalaya",
+    "category": "Sacred forest",
+    "latitude": 25.5,
+    "longitude": 91.75,
+    "description": "An ancient Khasi-protected grove where visitors may not remove even a twig or pebble.",
+    "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Forests",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Take a guided forest walk",
+      "Look for native birds",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Gandikota",
+    "state": "Andhra Pradesh",
+    "category": "Fort and gorge",
+    "latitude": 14.8147,
+    "longitude": 78.2867,
+    "description": "A hilltop fort overlooking the dramatic Penna River gorge, with gateways, temples, and a mosque.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Shikari Devi Temple",
+    "state": "Himachal Pradesh",
+    "category": "Temple and forest",
+    "latitude": 31.552919,
+    "longitude": 77.165764,
+    "description": "A roofless high-altitude temple reached through thick forest, overlooking green pastures and snow ranges.",
+    "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Mountains",
+    "budget_per_day": 1800,
+    "duration": 3,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Walk the valley trails",
+      "Find a quiet viewpoint",
+      "Explore with a local guide"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Bhangarh Fort",
+    "state": "Rajasthan",
+    "category": "Haunted monument",
+    "latitude": 27.0958,
+    "longitude": 76.2875,
+    "description": "A 17th-century ruined fort-town in the Aravalli hills, with temples, havelis, deserted markets, and local legend.",
+    "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Mystery",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore with a local guide",
+      "Discover local folklore",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Gavi Eco-Tourism",
+    "state": "Kerala",
+    "category": "Forest eco-tourism",
+    "latitude": 9.4405,
+    "longitude": 77.1603,
+    "description": "Forest trekking, wildlife watching, camping, and night safaris within the Periyar landscape.",
+    "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Forests",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Take a guided forest walk",
+      "Look for native birds",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Mubarak Mandi Palace",
+    "state": "Jammu and Kashmir",
+    "category": "Historic palace",
+    "latitude": 32.739968,
+    "longitude": 74.875705,
+    "description": "A former Dogra royal residence combining Rajasthani and Mughal architecture with a museum in its Pink Hall.",
+    "image_url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Heritage",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the architecture",
+      "Hear local stories",
+      "Visit nearby heritage sites"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Bogatha Waterfall",
+    "state": "Telangana",
+    "category": "Waterfall and trekking",
+    "latitude": 18.4761,
+    "longitude": 80.5,
+    "description": "A remote cascade reached by a short trek, celebrated for its powerful falls and rich surrounding landscape.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Shirui Hill",
+    "state": "Manipur",
+    "category": "Mountain and endemic flora",
+    "latitude": 25.106157,
+    "longitude": 94.456682,
+    "description": "A 2,835-metre hill sheltering the endemic Shirui Lily, which blooms around May and June.",
+    "image_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Mountains",
+    "budget_per_day": 1800,
+    "duration": 3,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Walk the valley trails",
+      "Find a quiet viewpoint",
+      "Explore with a local guide"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Patal Bhuvaneshwar",
+    "state": "Uttarakhand",
+    "category": "Cave temple",
+    "latitude": 29.8,
+    "longitude": 80.2,
+    "description": "A subterranean Shiva shrine entered through a tunnel and narrow dark water passage near Gangolihat.",
+    "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Mystery",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore with a local guide",
+      "Discover local folklore",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Basgo Monastery and Fort",
+    "state": "Ladakh",
+    "category": "Monastery and ruins",
+    "latitude": 34.224502,
+    "longitude": 77.276717,
+    "description": "A hilltop Buddhist complex known for Maitreya temples, murals, and dramatic Ladakh views.",
+    "image_url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Heritage",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the architecture",
+      "Hear local stories",
+      "Visit nearby heritage sites"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Wild Ass Sanctuary",
+    "state": "Gujarat",
+    "category": "Wildlife sanctuary",
+    "latitude": 23.7087,
+    "longitude": 71.018,
+    "description": "A vast salt-desert reserve protecting the last Indian wild ass and attracting flamingos and migratory cranes.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Lonar Crater",
+    "state": "Maharashtra",
+    "category": "Geological wonder",
+    "latitude": 19.975,
+    "longitude": 76.5075,
+    "description": "A meteorite-impact crater lake surrounded by forest, wildlife, and centuries-old temples.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Bhimashankar Wildlife Sanctuary",
+    "state": "Maharashtra",
+    "category": "Forest sanctuary",
+    "latitude": 19.2412,
+    "longitude": 73.5858,
+    "description": "Dense Sahyadri forest with Malabar giant squirrels, rich birdlife, trekking trails, and a Shiva temple.",
+    "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Forests",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Take a guided forest walk",
+      "Look for native birds",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Netravali Wildlife Sanctuary",
+    "state": "Goa",
+    "category": "Wildlife sanctuary",
+    "latitude": 15.2208,
+    "longitude": 74.3002,
+    "description": "Moist deciduous and semi-evergreen forests with leopards, giant squirrels, mouse deer, and rare birds.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Gudavi Bird Sanctuary",
+    "state": "Karnataka",
+    "category": "Bird sanctuary",
+    "latitude": 14.4417,
+    "longitude": 75.025,
+    "description": "A compact wetland sanctuary on Gudavi Lake known for seasonal resident and migratory waterbirds.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Sittanavasal",
+    "state": "Tamil Nadu",
+    "category": "Rock-cut cave monument",
+    "latitude": 10.466,
+    "longitude": 78.734,
+    "description": "An ASI-protected Jain and Tamil-Brahmi heritage site with a rock-cut cave temple and rare murals.",
+    "image_url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Heritage",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the architecture",
+      "Hear local stories",
+      "Visit nearby heritage sites"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Debrigarh Wildlife Sanctuary",
+    "state": "Odisha",
+    "category": "Wildlife sanctuary",
+    "latitude": 21.55,
+    "longitude": 83.75,
+    "description": "Dry deciduous forest beside Hirakud Reservoir, with waterfalls, rich wildlife, and birding.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Duarsini",
+    "state": "West Bengal",
+    "category": "Forest and tribal village",
+    "latitude": 22.72,
+    "longitude": 86.68,
+    "description": "A quiet Purulia village surrounded by Sal forest, rolling hills, wildlife, and eco-tourism trails.",
+    "image_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Forests",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Take a guided forest walk",
+      "Look for native birds",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Bhimbandh Wildlife Sanctuary",
+    "state": "Bihar",
+    "category": "Wildlife and hot springs",
+    "latitude": 25.18,
+    "longitude": 86.35,
+    "description": "A rugged forest sanctuary with waterfalls, trekking, camping, and perennial hot springs.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Kaimur Hills",
+    "state": "Bihar",
+    "category": "Rock art and wildlife",
+    "latitude": 24.95,
+    "longitude": 84.05,
+    "description": "A sparsely visited landscape of deep jungle, gorges, waterfalls, caves, and prehistoric rock shelters.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Suga Bandh Waterfall",
+    "state": "Jharkhand",
+    "category": "Waterfall",
+    "latitude": 23.72,
+    "longitude": 84.08,
+    "description": "A little-known waterfall on the Betla-Netarhat route and a local favourite for a scenic detour.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Siju Cave",
+    "state": "Meghalaya",
+    "category": "Cave and unusual nature",
+    "latitude": 25.32,
+    "longitude": 90.68,
+    "description": "A limestone cave near the Simsang River known for stalactites, underground streams, and thousands of bats.",
+    "image_url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Mystery",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Moderate",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore with a local guide",
+      "Discover local folklore",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Fakim Wildlife Sanctuary",
+    "state": "Nagaland",
+    "category": "Wildlife sanctuary",
+    "latitude": 25.56,
+    "longitude": 94.86,
+    "description": "A borderland sanctuary of steep ridges, deep gorges, orchids, hoolock gibbons, and Himalayan bears.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Khecheopalri Lake",
+    "state": "Sikkim",
+    "category": "Sacred lake",
+    "latitude": 27.33,
+    "longitude": 88.19,
+    "description": "A forest-framed lake near Pelling for nature photography, trekking, and spiritual quiet.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Coastal",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Raneh Falls",
+    "state": "Madhya Pradesh",
+    "category": "Waterfall and wildlife",
+    "latitude": 24.576,
+    "longitude": 79.932,
+    "description": "A multicoloured canyon carved by the Ken River, with waterfalls and wildlife in the Ken Gharial Sanctuary.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Pandav Falls",
+    "state": "Madhya Pradesh",
+    "category": "Forest waterfall",
+    "latitude": 24.718,
+    "longitude": 80.006,
+    "description": "A perennial cascade into a heart-shaped pool in Panna National Park, surrounded by forest and caves.",
+    "image_url": "https://images.unsplash.com/photo-1437482078695-73f5ca6c96e2?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Water & coast",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the waterside",
+      "Enjoy a scenic walk",
+      "Photograph the landscape"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Barnawapara Wildlife Sanctuary",
+    "state": "Chhattisgarh",
+    "category": "Wildlife sanctuary",
+    "latitude": 21.35,
+    "longitude": 82.273,
+    "description": "A hilly, well-forested sanctuary known for gaur, chital, sambar, wild boar, and more than 150 bird species.",
+    "image_url": "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Wildlife",
+    "group": "Wildlife",
+    "budget_per_day": 1500,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Arrange a guided nature trail",
+      "Go birdwatching",
+      "Learn about local conservation"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Tala Devrani-Jethani Temples",
+    "state": "Chhattisgarh",
+    "category": "Archaeological temples",
+    "latitude": 22.129,
+    "longitude": 81.976,
+    "description": "A little-visited site at the Shivnath-Maniari confluence, famed for stone sculptures and ancient temples.",
+    "image_url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Heritage",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the architecture",
+      "Hear local stories",
+      "Visit nearby heritage sites"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Dipadih Temple Complex",
+    "state": "Chhattisgarh",
+    "category": "Archaeological temple complex",
+    "latitude": 23.107,
+    "longitude": 83.918,
+    "description": "A little-known 7th-century complex with stone pillars and mythological figures, hidden in northern Chhattisgarh.",
+    "image_url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1200&q=85",
+    "mood": "Heritage",
+    "group": "Heritage",
+    "budget_per_day": 1200,
+    "duration": 2,
+    "difficulty": "Easy",
+    "is_hidden_gem": true,
+    "activities": [
+      "Explore the architecture",
+      "Hear local stories",
+      "Visit nearby heritage sites"
+    ],
+    "travel_tips": [
+      "Ask a local host about access and opening times before setting out.",
+      "Carry drinking water, download an offline map, and leave no litter.",
+      "Respect local customs and ask before photographing people."
+    ]
+  }
+]

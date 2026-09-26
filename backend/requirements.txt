@@ -1,0 +1,14 @@
+fastapi[all]
+uvicorn
+sqlalchemy
+psycopg2-binary
+alembic
+pydantic-settings
+python-jose[cryptography]
+bcrypt>=5.0.0
+redis
+python-multipart
+weasyprint
+httpx
+huggingface_hub
+huggingface_hub

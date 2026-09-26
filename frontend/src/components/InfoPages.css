@@ -1,0 +1,312 @@
+/* Info Pages Base */
+.info-page {
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* About Page Styles */
+.about-page {
+  padding-bottom: 0; /* sections handle padding */
+}
+
+/* 1. Hero Section */
+.about-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 24px 80px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-pill, .charter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(41, 77, 60, 0.1); /* light --green */
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.hero-pill .material-symbols-outlined, .charter-pill .material-symbols-outlined {
+  font-size: 18px;
+}
+.charter-pill {
+  background: rgba(202, 113, 72, 0.1);
+  color: var(--orange);
+}
+
+.about-hero h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #253a31;
+  margin-bottom: 24px;
+}
+.about-hero h1 em {
+  color: var(--orange);
+  font-style: italic;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.about-hero p {
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+  color: #5c6b63;
+  max-width: 720px;
+}
+
+/* 2. Metrics / Pillars */
+.about-metrics {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px 100px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -2px rgba(41, 77, 60, 0.04), 0 2px 6px -1px rgba(202, 113, 72, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -4px rgba(41, 77, 60, 0.08), 0 4px 12px -2px rgba(41, 77, 60, 0.04);
+}
+
+.metric-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(202, 113, 72, 0.1);
+  color: var(--orange);
+  margin-bottom: 24px;
+}
+.metric-icon .material-symbols-outlined {
+  font-size: 24px;
+}
+
+.metric-card h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #253a31;
+}
+
+.metric-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #5c6b63;
+}
+
+/* 3. The Sacred Charter */
+.about-charter {
+  background: rgba(41, 77, 60, 0.03);
+  padding: 100px 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.charter-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 60px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.charter-header h2 {
+  font-size: clamp(32px, 4vw, 44px);
+  margin-bottom: 20px;
+  color: #253a31;
+}
+
+.charter-header p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #5c6b63;
+}
+
+.charter-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.charter-item h3 {
+  font-size: 20px;
+  color: #253a31;
+  margin-bottom: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+.charter-item p {
+  font-size: 15px;
+  color: #5c6b63;
+}
+
+/* 4. CTA Section */
+.about-action {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-eyebrow {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.about-action h2 {
+  font-size: clamp(32px, 4vw, 44px);
+  margin-bottom: 24px;
+  color: #253a31;
+}
+
+.about-action p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #5c6b63;
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.action-buttons {
+  margin-bottom: 40px;
+}
+
+.action-buttons .primary {
+  background: var(--orange);
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.action-buttons .primary:hover {
+  background: #b24e2a; /* darker orange */
+  transform: scale(0.98);
+}
+.action-buttons .primary .material-symbols-outlined {
+  margin-right: 8px;
+}
+
+.action-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.action-trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.action-trust .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--green);
+}
+
+/* Terms Page Specifics */
+.terms-page {
+  padding: 100px 5% 150px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.terms-page .info-header {
+  text-align: center;
+  margin-bottom: 60px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 40px;
+}
+
+.terms-page .info-header h1 {
+  margin-bottom: 15px;
+}
+
+.terms-content section {
+  margin-bottom: 45px;
+}
+
+.terms-content h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--orange);
+}
+
+.terms-content p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #5c6b63;
+}
+
+.terms-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Responsiveness */
+@media(max-width: 1024px) {
+  .charter-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 40px;
+  }
+}
+
+@media(max-width: 768px) {
+  .about-hero {
+    padding: 100px 20px 60px;
+  }
+  .about-metrics {
+    padding: 0 20px 80px;
+  }
+  .charter-container {
+    padding: 30px 20px;
+  }
+  .about-action {
+    padding: 80px 20px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

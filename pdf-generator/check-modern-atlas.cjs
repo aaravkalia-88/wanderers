@@ -1,0 +1,81 @@
+const puppeteer = require('puppeteer');
+const assert = require('node:assert/strict');
+const path = require('node:path');
+const catalog = require('../frontend/src/data/destinations.json');
+const base = process.env.WANDERER_URL || 'http://127.0.0.1:5174';
+const artifacts = path.resolve(__dirname, '../artifacts');
+(async () => {
+ const browser = await puppeteer.launch({channel:'chrome',headless:true});
+ try {
+  const errors=[];
+  async function setup(page) {
+   page.on('pageerror',error=>errors.push(error.message));
+   await page.setRequestInterception(true);
+   page.on('request',request=>{
+    const url=new URL(request.url());
+    if(!url.pathname.startsWith('/api/v1/')) return request.continue();
+    const reply=(body,status=200)=>request.respond({status,contentType:'application/json',body:JSON.stringify(body)});
+    const route=url.pathname.slice(7);
+    if(route==='/auth/guest')return reply({access_token:'guest-preview'});
+    if(route==='/auth/login/access-token')return reply({access_token:new URLSearchParams(request.postData()).get('username').startsWith('b@')?'account-b':'account-a'});
+    if(route==='/destinations/')return reply(catalog);
+    if(route==='/trips')return reply([]);
+    if(route==='/passport')return reply({username:request.headers().authorization==='Bearer account-b'?'Explorer B':'Aarav Kalia',is_guest:false,entries:catalog.slice(0,14).map(p=>({place_id:p.id,status:'Visited',visit_date:'2026-08-14',notes:'A morning worth remembering.',rating:5,stamp_id:'IN-'+p.id})),xp:3600,tier:'Tier I Trailfinder',floor:3000,next_xp:7500,states:9,visited:14,achievements:[{name:'Himalayan Wayfarer',count:4,target:3,unlocked:true},{name:'Fortress Chronicler',count:2,target:2,unlocked:true}]});
+    return reply({detail:'Unavailable in this fixture'},503);
+   });
+  }
+  const page=await browser.newPage();await setup(page);await page.setViewport({width:1440,height:1000});await page.emulateMediaFeatures([{name:'prefers-color-scheme',value:'light'}]);
+  const shot=name=>page.screenshot({path:path.join(artifacts,name+'.png')});
+  const noOverflow=async()=>assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Horizontal overflow at '+page.url());
+  const click=async(selector,text)=>{
+   const node=await page.evaluateHandle(({selector,text})=>[...document.querySelectorAll(selector)].find(el=>el.textContent.trim().startsWith(text)),{selector,text});
+   assert(node.asElement(),'Missing '+text);await node.asElement().click();await node.dispose();
+  };
+  await page.goto(base,{waitUntil:'networkidle2'});
+  await page.waitForSelector('.journey-cartography canvas[data-atlas-ready]');
+  assert.equal(await page.$$eval('.journey-chapter',els=>els.length),catalog.length);
+  assert.equal(await page.$$eval('.journey-dots button',els=>els.length),6);
+  await noOverflow();await shot('modern-home-desktop');
+  await page.select('[aria-label="Jump to destination"]','15');
+  await page.waitForFunction(()=>document.querySelector('.journey-current-number').textContent==='16');
+  await page.waitForFunction(()=>[...document.querySelectorAll('.journey-chapter')][15].getBoundingClientRect().top<5);
+  await click('.journey-chapter:nth-child(16) .journey-discovery','');
+  await page.waitForSelector('dialog[open]');await page.keyboard.press('Escape');
+  await page.goto(base+'/passport',{waitUntil:'networkidle2'});
+  await page.waitForSelector('.postage-stamp');assert.equal(await page.$$eval('.postage-stamp',els=>els.length),30);
+  await shot('modern-passport-desktop');
+  await click('[aria-label="Stamp status"] button','Visited');assert.equal(await page.$$eval('.postage-stamp',els=>els.length),14);
+  await click('[aria-label="Stamp status"] button','Unvisited');assert.equal(await page.$$eval('.postage-stamp',els=>els.length),16);
+  await click('[aria-label="Stamp sector"] button','Heritage');
+  const expected=catalog.filter(p=>p.group==='Heritage'&&!catalog.slice(0,14).some(v=>v.id===p.id)).length;
+  assert.equal(await page.$$eval('.postage-stamp',els=>els.length),expected);
+  await click('[aria-label="Stamp status"] button','All');await click('[aria-label="Stamp sector"] button','All sectors');
+  await page.$eval('.ph-content',el=>el.scrollIntoView());await shot('modern-stamp-index');
+  await page.evaluate(()=>scrollTo(0,0));
+  await click('.ph-account button','Switch account');await page.waitForSelector('#auth-email');
+  assert.equal(await page.$eval('.auth-remember input',el=>el.checked),false);
+  await page.type('#auth-email','a@example.test');await page.type('#auth-password','password-123');
+  await page.click('.auth-remember input');await page.click('.auth-submit');await page.waitForFunction(()=>!document.querySelector('.auth-form'));
+  const second=await browser.newPage();await setup(second);await second.goto(base+'/passport',{waitUntil:'networkidle2'});
+  await second.waitForSelector('.postage-stamp');
+  const switchButton=await second.evaluateHandle(()=>[...document.querySelectorAll('.ph-account button')].find(el=>el.textContent==='Switch account'));
+  await switchButton.asElement().click();await second.waitForSelector('#auth-email');await second.type('#auth-email','b@example.test');await second.type('#auth-password','password-123');await second.click('.auth-submit');
+  await second.waitForFunction(()=>document.querySelector('.ledger-holder')?.textContent.includes('Explorer B'));
+  assert.equal(await page.evaluate(()=>sessionStorage.getItem('wanderer-token')),'account-a');
+  assert.equal(await second.evaluate(()=>sessionStorage.getItem('wanderer-token')),'account-b');
+  const signout=await second.evaluateHandle(()=>[...document.querySelectorAll('.ph-account button')].find(el=>el.textContent==='Sign out'));await signout.asElement().click();
+  assert.equal(await page.evaluate(()=>sessionStorage.getItem('wanderer-token')),'account-a');
+  assert.equal(await second.evaluate(()=>localStorage.getItem('wanderer-token')),'account-a');await second.close();
+  await page.setViewport({width:390,height:844});await page.goto(base+'/passport',{waitUntil:'networkidle2'});await page.waitForSelector('.postage-stamp');await noOverflow();await shot('modern-passport-mobile');
+  await page.click('[aria-label="Switch to dark mode"]');await shot('modern-passport-mobile-dark');
+  await page.goto(base,{waitUntil:'networkidle2'});await noOverflow();assert.equal(await page.$('.journey-cartography canvas'),null);await shot('modern-home-mobile');
+  await page.setViewport({width:1440,height:1000});await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);await page.goto(base,{waitUntil:'networkidle2'});
+  assert.equal(await page.$('.journey-cartography canvas'),null);
+  await click('.journey-map-fallback button','Enable 3D atlas');await page.waitForSelector('canvas[data-atlas-ready]');
+  await page.$eval('canvas',canvas=>canvas.dispatchEvent(new Event('webglcontextlost',{cancelable:true})));
+  await page.waitForFunction(()=>document.querySelector('.journey-map-fallback')?.textContent.includes('Retry 3D map'));
+  await click('.journey-map-fallback button','Retry 3D map');await page.waitForSelector('canvas[data-atlas-ready]');
+  assert.deepEqual(errors,[]);
+  console.log('PASS: 30 stops, six corridors, destination details, 30/14/16 stamp filters, desktop/mobile/dark, independent account tabs, logout isolation, reduced motion and WebGL recovery.');
+ } finally {await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});
