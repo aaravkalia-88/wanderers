@@ -27,6 +27,8 @@ The existing local `.env` is preserved. For a deployed build, configure `VITE_AP
 
 ## Deploy the frontend on Vercel
 
+The frontend is published at **https://wanderers-omega.vercel.app** on Vercel's Hobby plan.
+
 Import `aaravkalia-88/wanderers` into Vercel and keep **Root Directory** at the repository root (leave it empty). The root `vercel.json` sets the Vite framework, installs with `npm ci --prefix frontend`, builds with `npm --prefix frontend run build`, and publishes `frontend/dist`. Use Node.js **24.x**. Clear old dashboard command overrides if they still point to `vite build` at the repository root.
 
 The routing rule serves the React app for direct page links such as `/passport`, `/places/2`, and `/settings`. Existing public files are served normally; missing `/api` and `/assets` requests retain real 404 responses instead of receiving HTML.
@@ -43,7 +45,7 @@ This value is public and compiled into the frontend. Never put `SECRET_KEY`, dat
 
 ### Backend setup
 
-Deploy `backend/` to a Python host with PostgreSQL and the system libraries required by WeasyPrint. Start the service from that directory with `uvicorn app.main:app --host 0.0.0.0 --port "$PORT"` (use your host's assigned port). Configure `DATABASE_URL`, a securely generated `SECRET_KEY`, and `CORS_ORIGINS` as a JSON array containing your exact frontend origins, for example `["https://wanderers-dx41.vercel.app"]`. Include preview origins explicitly when testing previews. Set `AUTO_CREATE_SCHEMA=false` and run `alembic upgrade head` before starting the service. Startup then seeds the destination catalog.
+Deploy `backend/` to a Python host with PostgreSQL and the system libraries required by WeasyPrint. Start the service from that directory with `uvicorn app.main:app --host 0.0.0.0 --port "$PORT"` (use your host's assigned port). Configure `DATABASE_URL`, a securely generated `SECRET_KEY`, and `CORS_ORIGINS` as a JSON array containing your exact frontend origins, for example `["https://wanderers-omega.vercel.app"]`. Include preview origins explicitly when testing previews. Set `AUTO_CREATE_SCHEMA=false` and run `alembic upgrade head` before starting the service. Startup then seeds the destination catalog.
 
 Check `/api/v1/health/ready`, then verify guest creation, sign-in, saving a place, and reload persistence from the frontend. `HUGGINGFACE_API_KEY` is required for AI chat; Redis is optional and falls back to in-memory caching. Do not use a local SQLite file for a serverless deployment: personal journals need a durable database. The Socket.IO service in `services/realtime/` is separate and is not used by this frontend deployment.
 
