@@ -19,3 +19,4 @@ backend/uploads/
 .agents/
 .junie/
 *.save
+.vercel/
