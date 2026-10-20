@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://wanderers-omega.vercel.app"><img src="docs/images/field-guide.svg" alt="Wanderer. Somewhere less ordinary. Travel research powered by TinyFish." width="1200" /></a>
+  <a href="https://wanderers-znqi.vercel.app"><img src="docs/images/field-guide.svg" alt="Wanderer. Somewhere less ordinary. Travel research powered by TinyFish." width="1200" /></a>
 </p>
 
 <p align="center">
-  <a href="https://wanderers-omega.vercel.app"><strong>Explore Wanderer ↗</strong></a> &nbsp; · &nbsp;
+  <a href="https://wanderers-znqi.vercel.app"><strong>Explore Wanderer ↗</strong></a> &nbsp; · &nbsp;
   <a href="#tinyfish-the-research-behind-the-journey">TinyFish integration</a> &nbsp; · &nbsp;
   <a href="#try-the-hackathon-flow">Demo walkthrough</a> &nbsp; · &nbsp;
   <a href="docs/DEVELOPMENT.md">Run & deploy</a>
@@ -120,7 +120,7 @@ Open **[127.0.0.1:5173](http://127.0.0.1:5173)**. FastAPI runs on port 8000; Vit
 
 ## Ship & verify
 
-The public frontend is **[wanderers-omega.vercel.app](https://wanderers-omega.vercel.app)**. Vercel builds from the repository root using [`vercel.json`](vercel.json). Host FastAPI with a durable database, set `VITE_API_BASE_URL` to its URL including `/api/v1`, configure exact CORS origins and redeploy. Never put TinyFish keys, database credentials or session secrets in `VITE_*` variables.
+The public frontend is **[wanderers-znqi.vercel.app](https://wanderers-znqi.vercel.app)**. Vercel builds from the repository root using [`vercel.json`](vercel.json). Host FastAPI with a durable database, set `VITE_API_BASE_URL` to its URL including `/api/v1`, configure exact CORS origins and redeploy. Never put TinyFish keys, database credentials or session secrets in `VITE_*` variables.
 
 [Local setup & deployment guide](docs/DEVELOPMENT.md) · [Vercel verification](docs/VERCEL_DEPLOYMENT.tdd.md) · [Encrypted CARTO setup](docs/CARTO_ENV.tdd.md)
 

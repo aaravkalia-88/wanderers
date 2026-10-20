@@ -30,3 +30,18 @@ Commit `d41efcc9aeca2f9ca7e895f3c0419334998347e2` was pushed to `main` and deplo
 Unauthenticated checks at `https://wanderers-omega.vercel.app` returned the React document with HTTP 200 for `/`, `/passport`, `/places/2`, and `/settings`. `/india-states.geojson` returned HTTP 200 with its GeoJSON content type. `/api/v1/health` and `/assets/missing.js` returned HTTP 404 without the SPA document. The homepage rendered in the browser with the destination journey and navigation. The generated `wanderers-dx41.vercel.app` alias redirects to Vercel authentication; use the public `wanderers-omega.vercel.app` alias.
 
 Backend integration remains pending until a FastAPI service, durable database, CORS origins, and `VITE_API_BASE_URL` are configured. See the README for those settings.
+
+## New frontend URL — 2026-10-20
+
+The user supplied `https://wanderers-znqi.vercel.app/` as the new deployment.
+Unauthenticated HTTP checks returned 200 for `/` and 404 for `/api/v1/health`,
+`/api/v1/health/ready` and `/api/v1/openapi.json`. The public frontend bundle
+contains the same-origin `/api/v1` fallback without a hosted API origin.
+
+The active README and development guide now use the new URL. The earlier
+verification above remains a historical record for the prior deployment.
+The user confirmed FastAPI is already deployed elsewhere and will supply its
+public URL. Connecting that URL, checking its CORS configuration, and verifying
+backend features remain pending; adding backend secrets to the frontend would
+not repair the missing API connection. See [configuration locations and
+diagnosis](DEVELOPMENT.md#when-backend-features-fail-on-the-deployed-frontend).
