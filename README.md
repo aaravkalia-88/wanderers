@@ -66,7 +66,6 @@ For the **Kritical Hacks 2026** demo:
 4. On a pilot-approved source, **Check live options** starts an asynchronous date check. Compare confirmed offers, reload to resume, or cancel. Otherwise, supplier links remain available.
 5. Save the trip and return to the passport to keep your travel story.
 
-> **Current demo status:** the Vercel link serves the frontend; live research, accounts and saved journals require the separately hosted FastAPI API. TinyFish discovery is configured locally. The first Booking pilot returned five hotel links but no confirmed dates, so its prices remain hidden and live supplier checks stay disabled until a pilot passes. The browser test covers the complete UI flow with fixtures; fixtures are not presented as live supplier results.
 
 ## One journey, four chapters
 
