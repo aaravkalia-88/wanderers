@@ -20,3 +20,5 @@ backend/uploads/
 .junie/
 *.save
 .vercel/
+**/.coverage
+**/.coverage.*

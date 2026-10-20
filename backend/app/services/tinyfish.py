@@ -334,6 +334,13 @@ def refresh_job(db, job, cancel=False):
             job.status = 'CANCELLED'
             db.commit()
         return public_job(job)
+    if not job.provider_id and job.status == 'STARTING' and job.created_at < int(time.time()) - 60:
+        locked_budget(db)
+        db.refresh(job)
+        if not job.provider_id and job.status == 'STARTING':
+            job.status = 'UNKNOWN'
+            job.result = {'notice': 'This check could not be confirmed. Use the supplier link; no duplicate check will be started.'}
+        db.commit()
     if not job.provider_id or (job.status not in ACTIVE and job.settled):
         return public_job(job)
     try:

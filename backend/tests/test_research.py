@@ -274,6 +274,128 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual(result.json()['status'], 'UNKNOWN')
         self.assertEqual(self.ledger()[:2], (0, 2400))
 
+    def test_malformed_results_container_is_handled_as_a_source_failure(self):
+        from app.services.tinyfish import discovery, ResearchInput
+        body = ResearchInput.model_validate(self.body)
+        for container in (None, 7):
+            with patch('app.services.tinyfish.provider_request', return_value={'results': container}):
+                result, partial = discovery(body)
+                self.assertEqual(result['cards'], [])
+                self.assertTrue(partial)
+
+    def test_identity_and_ip_daily_limits_survive_completed_jobs(self):
+        from app.services.tinyfish import admit, ResearchInput
+        from fastapi import HTTPException
+        self.enable()
+        body = ResearchInput.model_validate({**self.body, 'category': 'stays', 'mode': 'live', 'source': 'booking'})
+        with self.sessions() as db:
+            first, _ = admit(db, body, 900, 'same-ip')
+            first.status, first.settled = 'COMPLETE', 1
+            db.commit()
+            other = body.model_copy(update={'source': 'makemytrip'})
+            with self.assertRaises(HTTPException):
+                admit(db, other, 900, 'different-ip')
+            second, _ = admit(db, body, 901, 'same-ip')
+            second.status, second.settled = 'COMPLETE', 1
+            db.commit()
+            with self.assertRaises(HTTPException):
+                admit(db, body, 902, 'same-ip')
+
+    def test_poll_failures_preserve_the_reservation_and_malformed_offers_settle_usage(self):
+        self.enable()
+        with patch('app.services.tinyfish.provider_request', side_effect=[{'run_id': 'fixture'}, httpx_timeout(),
+                {'status': 'RUNNING'}, {'status': 'COMPLETED', 'num_of_steps': 3, 'result': {'unexpected': True}}]):
+            job = self.post(category='stays', mode='live', source='booking').json()
+            path = '/api/v1/research/' + job['id']
+            self.assertEqual(self.client.get(path, headers=self.headers).json()['status'], 'RUNNING')
+            self.assertEqual(self.ledger()[:2], (0, 2400))
+            self.assertEqual(self.client.get(path, headers=self.headers).json()['status'], 'RUNNING')
+            self.assertEqual(self.client.get(path, headers=self.headers).json()['status'], 'FAILED')
+            self.assertEqual(self.ledger()[:2], (48, 0))
+
+    def test_api_rate_limits_never_make_provider_calls(self):
+        with patch('app.api.v1.research.rate_limit_check', return_value=False), patch('app.services.tinyfish.provider_request') as mock:
+            self.assertEqual(self.post().status_code, 429)
+            self.assertEqual(self.client.get('/api/v1/research/missing', headers=self.headers).status_code, 429)
+            self.assertEqual(self.client.post('/api/v1/research/missing/cancel', headers=self.headers).status_code, 429)
+        mock.assert_not_called()
+
+    def test_http_provider_adapter_is_bounded_and_keeps_credentials_in_headers(self):
+        import httpx
+        from app.services.tinyfish import provider_request
+        self.enable()
+        original = httpx.Client
+        requests = []
+        def handler(request):
+            requests.append(request)
+            return httpx.Response(200, json={'results': []})
+        transport = httpx.MockTransport(handler)
+        with patch('app.services.tinyfish.httpx.Client', side_effect=lambda **kw: original(transport=transport, **kw)):
+            self.assertEqual(provider_request('search', params={'query': 'fixture'}), {'results': []})
+        self.assertEqual(requests[0].headers['x-api-key'], 'fixture-only-key')
+        self.assertNotIn('fixture-only-key', str(requests[0].url))
+        for payload in (b'[]', b'not json', b'x' * 2_000_001):
+            with patch('app.services.tinyfish.httpx.Client', side_effect=lambda **kw: original(transport=httpx.MockTransport(lambda request: httpx.Response(200, content=payload)), **kw)):
+                with self.assertRaises(ValueError):
+                    provider_request('search')
+
+    def test_encrypted_local_key_round_trip_and_wrong_key_fail_closed(self):
+        import base64
+        from pathlib import Path
+        from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+        from app.core.tinyfish_secret import decrypt_tinyfish
+        key, nonce = AESGCM.generate_key(bit_length=256), os.urandom(12)
+        envelope = base64.b64encode(nonce + AESGCM(key).encrypt(nonce, b'fixture-secret', b'wanderers-tinyfish-v1')).decode()
+        with patch.object(Path, 'read_bytes', return_value=key):
+            self.assertEqual(decrypt_tinyfish(envelope), 'fixture-secret')
+        with patch.object(Path, 'read_bytes', return_value=os.urandom(32)):
+            with self.assertRaisesRegex(ValueError, '^Cannot decrypt TinyFish configuration'):
+                decrypt_tinyfish(envelope)
+
+    def test_key_storage_script_preserves_settings_and_writes_owner_only_ciphertext(self):
+        import importlib.util
+        import base64
+        from pathlib import Path
+        from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+        script = Path(__file__).resolve().parents[2] / 'scripts/store-tinyfish-key.py'
+        spec = importlib.util.spec_from_file_location('store_tinyfish_fixture', script)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'backend').mkdir()
+            target = root / 'backend/.env.local'
+            target.write_text('OTHER_SETTING=preserve\n')
+            module.__file__ = str(root / 'scripts/store-tinyfish-key.py')
+            with patch.object(module.getpass, 'getpass', return_value='fixture-secret'), patch('builtins.print'):
+                module.main()
+            saved = target.read_text()
+            self.assertIn('OTHER_SETTING=preserve', saved)
+            self.assertNotIn('fixture-secret', saved)
+            self.assertEqual(target.stat().st_mode & 0o777, 0o600)
+            key = (root / '.runtime/tinyfish-env.key').read_bytes()
+            self.assertEqual((root / '.runtime/tinyfish-env.key').stat().st_mode & 0o777, 0o600)
+            data = base64.b64decode(saved.split('TINYFISH_API_KEY_ENCRYPTED=')[1].strip())
+            self.assertEqual(AESGCM(key).decrypt(data[:12], data[12:], b'wanderers-tinyfish-v1'), b'fixture-secret')
+
+    def test_experience_prices_use_the_activity_date_and_do_not_require_hotel_rooms(self):
+        from app.services.tinyfish import normalize_offers, ResearchInput
+        body = ResearchInput.model_validate({**self.body, 'category': 'experiences', 'mode': 'live', 'source': 'thrillophilia'})
+        result = self.offer(check_in='', check_out='', rooms=0)
+        result['offers'][0].update(url='https://www.thrillophilia.com/fixture', date=self.body['start'], basis='per person')
+        card = normalize_offers(result, body)['cards'][0]
+        self.assertTrue(card['date_checked'])
+        self.assertEqual(card['price']['basis'], 'per person')
+        result['offers'][0]['date'] = self.body['checkout']
+        self.assertFalse(normalize_offers(result, body)['cards'][0]['date_checked'])
+
+    def test_currency_codes_are_validated_without_truncating_unknown_values(self):
+        from app.services.tinyfish import normalize_offers, ResearchInput
+        body = ResearchInput.model_validate({**self.body, 'category': 'stays', 'mode': 'live', 'source': 'booking'})
+        result = self.offer()
+        result['offers'][0]['currency'] = 'INR-unverified'
+        self.assertIsNone(normalize_offers(result, body)['cards'][0]['price'])
+
 
 def httpx_timeout():
     import httpx

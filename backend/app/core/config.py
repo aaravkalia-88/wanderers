@@ -34,6 +34,6 @@ class Settings(BaseSettings):
             self.TINYFISH_API_KEY = SecretStr(decrypt_tinyfish(self.TINYFISH_API_KEY_ENCRYPTED))
         return self
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore", env_nested_delimiter=",")
+    model_config = SettingsConfigDict(env_file=(".env", ".env.local"), extra="ignore", env_nested_delimiter=",")
 
 settings = Settings()
