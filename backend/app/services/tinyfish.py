@@ -274,8 +274,12 @@ def normalize_offers(result, body):
         if not isinstance(offer, dict) or not safe_url(offer.get('url'), body.source):
             continue
         activity_date = text(offer.get('date'))
+        try:
+            parsed_date = date.fromisoformat(activity_date)
+        except ValueError:
+            parsed_date = None
         confirmed = stay_confirmed if body.category == 'stays' else adults_match and (
-            bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', activity_date)) and str(body.start) <= activity_date < str(body.checkout))
+            parsed_date is not None and bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', activity_date)) and body.start <= parsed_date < body.checkout)
         price = None
         currency = text(offer.get('currency'))
         try:

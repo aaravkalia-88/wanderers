@@ -18,6 +18,8 @@ export default function TripResearch({place, start, days, travelers, style}: {pl
   const [busy, setBusy] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const version = useRef(0);
+  const section = useRef<HTMLElement>(null);
+  const visible = useRef(true);
   const requests = useRef(new Map<string, AbortController>());
   const latest = useRef(results); latest.current = results;
   const base = {place_id: place.id, start, days, travelers, style, adults, rooms, checkout};
@@ -26,6 +28,11 @@ export default function TripResearch({place, start, days, travelers, style}: {pl
 
   useEffect(() => {setAdults(travelers); setRooms(1);}, [travelers]);
   useEffect(() => {setCheckout(defaultCheckout(start, days));}, [start, days]);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {visible.current = entry.isIntersecting;});
+    if (section.current) observer.observe(section.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const current = ++version.current;
@@ -61,7 +68,7 @@ export default function TripResearch({place, start, days, travelers, style}: {pl
     const controller = new AbortController();
     async function poll() {
       if (stopped) return;
-      if (!document.hidden && token() === identity) {
+      if (!document.hidden && visible.current && token() === identity) {
         await Promise.all(Object.entries(latest.current).filter(([, result]) => pending(result) && result.id).map(async ([slot, result]) => {
           try {
             const update = await getResearch(result.id!, AbortSignal.any([controller.signal, AbortSignal.timeout(15000)]));
@@ -159,9 +166,9 @@ export default function TripResearch({place, start, days, travelers, style}: {pl
     </section>;
   }
 
-  return <section className="trip-research" aria-labelledby="research-title">
+  return <section ref={section} className="trip-research" aria-labelledby="research-title">
     <div className="research-title"><div><span className="eyebrow">A little research, a better journey</span><h3 id="research-title">Research this trip<em>.</em></h3></div><Icon name="travel_explore"/></div>
-    <p className="research-intro">Explore {place.name} with source-backed information and options for your trip.</p>
+    <p className="research-intro">Explore {place.name} with source-backed information and options for your trip. Powered by TinyFish.</p>
     <div className="research-tabs" role="tablist" aria-label="Trip research"><button type="button" role="tab" id="essentials-tab" aria-selected={tab === 'essentials'} aria-controls="essentials-panel" tabIndex={tab === 'essentials' ? 0 : -1} onKeyDown={tabKey} onClick={() => setTab('essentials')}>Trip essentials</button><button type="button" role="tab" id="compare-tab" aria-selected={tab === 'compare'} aria-controls="compare-panel" tabIndex={tab === 'compare' ? 0 : -1} onKeyDown={tabKey} onClick={() => setTab('compare')}>Stays & experiences</button></div>
     <div id="essentials-panel" role="tabpanel" aria-labelledby="essentials-tab" hidden={tab !== 'essentials'}>{panel('essentials', 'Know before you go')}</div>
     <div id="compare-panel" role="tabpanel" aria-labelledby="compare-tab" hidden={tab !== 'compare'}>

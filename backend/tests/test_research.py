@@ -365,17 +365,19 @@ class ResearchTests(unittest.TestCase):
             root = Path(directory)
             (root / 'backend').mkdir()
             target = root / 'backend/.env.local'
-            target.write_text('OTHER_SETTING=preserve\n')
+            target.write_text('OTHER_SETTING=preserve\n  export TINYFISH_API_KEY = old-plaintext\nTINYFISH_BILLING_VERIFIED=true\n')
             module.__file__ = str(root / 'scripts/store-tinyfish-key.py')
             with patch.object(module.getpass, 'getpass', return_value='fixture-secret'), patch('builtins.print'):
                 module.main()
             saved = target.read_text()
             self.assertIn('OTHER_SETTING=preserve', saved)
             self.assertNotIn('fixture-secret', saved)
+            self.assertNotIn('old-plaintext', saved)
+            self.assertIn('TINYFISH_BILLING_VERIFIED=false', saved)
             self.assertEqual(target.stat().st_mode & 0o777, 0o600)
             key = (root / '.runtime/tinyfish-env.key').read_bytes()
             self.assertEqual((root / '.runtime/tinyfish-env.key').stat().st_mode & 0o777, 0o600)
-            data = base64.b64decode(saved.split('TINYFISH_API_KEY_ENCRYPTED=')[1].strip())
+            data = base64.b64decode(saved.split('TINYFISH_API_KEY_ENCRYPTED=')[1].splitlines()[0])
             self.assertEqual(AESGCM(key).decrypt(data[:12], data[12:], b'wanderers-tinyfish-v1'), b'fixture-secret')
 
     def test_experience_prices_use_the_activity_date_and_do_not_require_hotel_rooms(self):
@@ -403,6 +405,40 @@ class ResearchTests(unittest.TestCase):
         result = self.offer()
         result['offers'][0].update(url='https://www.thrillophilia.com/fixture', date='2027-01-32')
         self.assertFalse(normalize_offers(result, body)['cards'][0]['date_checked'])
+
+    def test_separate_processes_share_the_same_lifetime_budget(self):
+        import subprocess
+        import sys
+        from concurrent.futures import ThreadPoolExecutor
+        from pathlib import Path
+        program = '''
+import json, sys
+from fastapi import HTTPException
+from app.db.session import SessionLocal
+from app.services.tinyfish import admit, ResearchInput
+body = ResearchInput.model_validate(json.loads(sys.argv[1]))
+with SessionLocal() as db:
+    try:
+        admit(db, body, int(sys.argv[2]), sys.argv[2])
+        print('allowed')
+    except HTTPException:
+        print('limited')
+'''
+        import json
+        body = json.dumps({**self.body, 'category': 'stays', 'mode': 'live', 'source': 'booking'})
+        env = {**os.environ, 'DATABASE_URL': 'sqlite:///' + self.path, 'TINYFISH_API_KEY': 'fixture-only-key',
+            'TINYFISH_API_KEY_ENCRYPTED': '', 'TINYFISH_DISCOVERY_VERIFIED': 'true',
+            'TINYFISH_BILLING_VERIFIED': 'true', 'TINYFISH_LIVE_SOURCES': '["booking"]',
+            'TINYFISH_CUSTOM_STEP_LIMIT': 'false', 'TINYFISH_BUDGET_MUSD': '3000'}
+        def attempt(index):
+            result = subprocess.run([sys.executable, '-c', program, body, str(2000 + index)],
+                cwd=Path(__file__).resolve().parents[1], env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            return result.stdout.strip()
+        with ThreadPoolExecutor(max_workers=4) as pool:
+            outcomes = list(pool.map(attempt, range(4)))
+        self.assertEqual(outcomes.count('allowed'), 1)
+        self.assertEqual(self.ledger()[:2], (0, 2400))
 
 
 def httpx_timeout():

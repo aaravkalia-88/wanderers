@@ -28,7 +28,7 @@ const chrome = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Conte
       cards: status === 'RUNNING' || status === 'CANCELLED' ? [] : [{title: input.category === 'essentials' ? 'Official visitor information <script>window.injection=true</script>' : 'Fixture ' + input.category,
         description: 'Source-backed information for ' + catalog.find(place => place.id === input.place_id).name,
         excerpt: 'A readable excerpt from the source. Always confirm details with the supplier.', topic: input.category,
-        url: input.category === 'essentials' ? 'https://www.incredibleindia.gov.in/place' : input.category === 'stays' ? 'https://www.booking.com/hotel/in/fixture.html' : 'https://www.thrillophilia.com/fixture',
+        url: input.category === 'essentials' ? 'https://www.incredibleindia.gov.in/place' : input.category === 'stays' ? input.source === 'makemytrip' ? 'https://www.makemytrip.com/hotels/fixture.html' : 'https://www.booking.com/hotel/in/fixture.html' : 'https://www.thrillophilia.com/fixture',
         source: input.source || (input.category === 'essentials' ? 'official' : input.category === 'stays' ? 'booking' : 'thrillophilia'),
         checked_at: Date.now() / 1000, date_checked: input.mode === 'live', availability: input.mode === 'live' ? 'available' : 'not_confirmed',
         price: input.mode === 'live' ? {amount: '2500', currency: 'INR', basis: 'per night', taxes: '', cancellation: ''} : null}]});
@@ -105,10 +105,19 @@ const chrome = process.env.CHROME_PATH || '/Applications/Google Chrome.app/Conte
     await click(categories + ':nth-of-type(2) button', 'Cancel check');
     await waitText('Check cancelled.');
     await page.evaluate(() => {window.fixtureHidden = true; Object.defineProperty(document, 'hidden', {configurable: true, get: () => window.fixtureHidden});});
+    await click(categories + ':nth-of-type(1) .research-sources div:last-child button', 'Check live options');
+    await page.waitForFunction(() => [...document.querySelectorAll('#compare-panel .research-category:nth-of-type(1) button')].some(node => node.textContent === 'Cancel check'));
     const hiddenPolls = polls;
     await new Promise(resolve => setTimeout(resolve, 3400));
     assert.equal(polls, hiddenPolls, 'Hidden research panels must not poll');
     await page.evaluate(() => {window.fixtureHidden = false;});
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await new Promise(resolve => setTimeout(resolve, 100));
+    const offscreenPolls = polls;
+    await new Promise(resolve => setTimeout(resolve, 3400));
+    assert.equal(polls, offscreenPolls, 'Offscreen research panels must not poll');
+    await page.$eval('.trip-research', node => node.scrollIntoView());
+    await page.waitForFunction(() => [...document.querySelectorAll('#compare-panel .research-category:nth-of-type(1) button')].every(node => node.textContent !== 'Cancel check'));
     const artifact = path.resolve(__dirname, '../artifacts'); fs.mkdirSync(artifact, {recursive: true});
     await (await page.$('.trip-research')).screenshot({path: path.join(artifact, 'research-desktop.png')});
     await page.setViewport({width: 390, height: 844});

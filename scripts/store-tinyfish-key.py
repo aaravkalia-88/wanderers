@@ -26,12 +26,14 @@ def main():
     envelope = base64.b64encode(nonce + AESGCM(key).encrypt(nonce, secret.encode(), b'wanderers-tinyfish-v1')).decode()
     target = root / 'backend/.env.local'
     previous = target.read_text() if target.exists() else ''
-    previous = re.sub(r'^TINYFISH_API_KEY(?:_ENCRYPTED)?=.*(?:\n|$)', '', previous, flags=re.MULTILINE)
+    previous = re.sub(r'^\s*(?:export\s+)?TINYFISH_(?:API_KEY(?:_ENCRYPTED)?|DISCOVERY_VERIFIED|BILLING_VERIFIED|LIVE_SOURCES|CUSTOM_STEP_LIMIT)\s*=.*(?:\n|$)', '', previous, flags=re.MULTILINE)
     temporary = target.with_suffix('.local.tmp')
     descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
     try:
         with os.fdopen(descriptor, 'w') as handle:
-            handle.write(previous.rstrip() + '\nTINYFISH_API_KEY_ENCRYPTED=' + envelope + '\n')
+            handle.write(previous.rstrip() + '\nTINYFISH_API_KEY_ENCRYPTED=' + envelope + '\n'
+                'TINYFISH_DISCOVERY_VERIFIED=false\nTINYFISH_BILLING_VERIFIED=false\n'
+                'TINYFISH_LIVE_SOURCES=[]\nTINYFISH_CUSTOM_STEP_LIMIT=false\n')
             handle.flush()
             os.fsync(handle.fileno())
         temporary.replace(target)
