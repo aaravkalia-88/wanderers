@@ -5,9 +5,10 @@ import {findOrigin, localOrigin, RoutePoint} from '../api/routes';
 import {Icon} from './UI';
 import Weather from './Weather';
 import TripRoute from './TripRoute';
+import TripResearch from './TripResearch';
 
-export default function TripPlanner({place, places, onPlace, onSave, initialTrip}: {
-  initialTrip?: Trip; place: Destination; places: Destination[]; onPlace: (p: Destination) => void; onSave: (t: Trip) => Promise<void>;
+export default function TripPlanner({place, places, onPlace, onSave, initialTrip, sessionOwner}: {
+  sessionOwner: string; initialTrip?: Trip; place: Destination; places: Destination[]; onPlace: (p: Destination) => void; onSave: (t: Trip) => Promise<void>;
 }) {
   const [origin, setOrigin] = useState(initialTrip?.origin || 'New Delhi');
   const [originPoint, setOriginPoint] = useState<RoutePoint | undefined>(() => initialTrip?.origin_point || localOrigin(initialTrip?.origin || 'New Delhi', places));
@@ -93,6 +94,7 @@ export default function TripPlanner({place, places, onPlace, onSave, initialTrip
         <div className="cost-summary"><div><span className="eyebrow">Estimated local spend</span><h2>{rupees(estimate)}</h2><small>Stay, meals & local activities · extra stops & travel not included</small></div><span className={estimate > budget ? 'over-budget' : 'under-budget'}>{estimate > budget ? `${rupees(estimate - budget)} over budget` : `${rupees(budget - estimate)} remaining`}</span></div>
         <h3>Your suggested itinerary</h3><div className="itinerary">{Array.from({length: Math.min(14, Math.max(1, days))}, (_, i) => <div key={i}><span>{String(i + 1).padStart(2, '0')}</span><div><small>DAY {i + 1}</small><h4>{i === 0 ? 'Arrive. Breathe. Settle in.' : i === days - 1 ? 'One last look, then the road home.' : place.activities[(i + (style === 'Adventure' ? 1 : style === 'Culture' ? 2 : 0)) % place.activities.length]}</h4><p>{i === 0 ? 'Meet your host, get your bearings, and take a gentle walk.' : i === days - 1 ? 'Leave time for a slow morning and your onward journey.' : 'Set aside an unhurried day. Ask a local guide about access and the best time to go.'}</p></div></div>)}</div>
         <small className="route-note">This itinerary is a planning suggestion, with estimates rather than booking prices.</small><Weather key={place.id} id={place.id} full/>
+        <TripResearch key={sessionOwner} place={place} start={start} days={days} travelers={travelers} style={style}/>
       </div>
     </div>
   </section>;
