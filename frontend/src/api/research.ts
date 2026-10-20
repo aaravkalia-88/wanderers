@@ -9,6 +9,7 @@ export interface ResearchInput {
 export interface ResearchCard {
   title: string; description: string; excerpt: string; url: string; source: string; topic: string;
   checked_at: number | null; date_checked: boolean; availability: 'available' | 'unavailable' | 'not_confirmed';
+  activity_date?: string | null;
   price: {amount: string; currency: string; basis: string; taxes: string; cancellation: string} | null;
 }
 export interface ResearchResult {

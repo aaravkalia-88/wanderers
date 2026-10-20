@@ -238,7 +238,7 @@ def discovery(body):
 
 def agent_payload(body):
     place = BY_ID[body.place_id]
-    fields = {key: {'type': 'string'} for key in ('title', 'url', 'description', 'amount', 'currency', 'basis', 'taxes', 'cancellation', 'availability')}
+    fields = {key: {'type': 'string'} for key in ('title', 'url', 'description', 'amount', 'currency', 'basis', 'taxes', 'cancellation', 'availability', 'date')}
     schema = {'type': 'object', 'properties': {
         'check_in': {'type': 'string'}, 'check_out': {'type': 'string'},
         'adults': {'type': 'integer'}, 'rooms': {'type': 'integer'},
@@ -252,6 +252,8 @@ def agent_payload(body):
         "Return only observed offers with exact source URLs. Confirm dates and occupancy from the page; do not echo them as verified if not shown. "
         "Use empty strings/zero for unconfirmed fields. Amount is a decimal string without currency symbols; "
         "currency is the observed ISO code. Basis must state per night, entire stay or per person. "
+        "For experiences, date must be the actual activity date (YYYY-MM-DD) within the trip, and adults must be confirmed; rooms do not apply. "
+        "For stays, confirm check-in/check-out and room count; date may be empty. "
         "Availability is available, unavailable or not_confirmed. Include taxes and cancellation terms only if visible.")
     config = {'max_duration_seconds': 180}
     if settings.TINYFISH_CUSTOM_STEP_LIMIT:
@@ -264,15 +266,18 @@ def agent_payload(body):
 def normalize_offers(result, body):
     if not isinstance(result, dict) or not isinstance(result.get('offers'), list):
         raise ValueError('Missing offers')
-    confirmed = (result.get('check_in') == str(body.start) and result.get('check_out') == str(body.checkout)
-                 and type(result.get('adults')) is int and result['adults'] == body.adults
-                 and type(result.get('rooms')) is int and result['rooms'] == body.rooms)
+    adults_match = type(result.get('adults')) is int and result['adults'] == body.adults
+    stay_confirmed = (adults_match and result.get('check_in') == str(body.start) and result.get('check_out') == str(body.checkout)
+                      and type(result.get('rooms')) is int and result['rooms'] == body.rooms)
     cards = []
     for offer in result['offers'][:5]:
         if not isinstance(offer, dict) or not safe_url(offer.get('url'), body.source):
             continue
+        activity_date = text(offer.get('date'))
+        confirmed = stay_confirmed if body.category == 'stays' else adults_match and (
+            bool(re.fullmatch(r'\d{4}-\d{2}-\d{2}', activity_date)) and str(body.start) <= activity_date < str(body.checkout))
         price = None
-        currency = text(offer.get('currency'), 3)
+        currency = text(offer.get('currency'))
         try:
             amount = Decimal(str(offer.get('amount', '')))
             if confirmed and amount.is_finite() and 0 <= amount <= 100000000 and re.fullmatch('[A-Z]{3}', currency) and text(offer.get('basis')):
@@ -283,9 +288,10 @@ def normalize_offers(result, body):
         cards.append({'title': text(offer.get('title'), 180) or SOURCES[body.source][0],
             'description': text(offer.get('description'), 500), 'excerpt': '', 'url': offer['url'],
             'source': body.source, 'topic': body.category, 'checked_at': int(time.time()),
+            'activity_date': activity_date if body.category == 'experiences' and confirmed else None,
             'date_checked': confirmed, 'availability': offer.get('availability') if confirmed
             and offer.get('availability') in ('available', 'unavailable') else 'not_confirmed', 'price': price})
-    return {'cards': cards, 'notice': '' if confirmed and cards else
+    return {'cards': cards, 'notice': '' if cards and all(card['date_checked'] for card in cards) else
             'Dates or availability could not be confirmed. Check the supplier before booking.'}
 
 

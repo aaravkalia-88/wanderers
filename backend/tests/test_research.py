@@ -396,6 +396,14 @@ class ResearchTests(unittest.TestCase):
         result['offers'][0]['currency'] = 'INR-unverified'
         self.assertIsNone(normalize_offers(result, body)['cards'][0]['price'])
 
+    def test_impossible_activity_dates_cannot_be_verified(self):
+        from app.services.tinyfish import normalize_offers, ResearchInput
+        body = ResearchInput.model_validate({**self.body, 'start': '2027-01-20', 'checkout': '2027-02-05',
+            'category': 'experiences', 'mode': 'live', 'source': 'thrillophilia'})
+        result = self.offer()
+        result['offers'][0].update(url='https://www.thrillophilia.com/fixture', date='2027-01-32')
+        self.assertFalse(normalize_offers(result, body)['cards'][0]['date_checked'])
+
 
 def httpx_timeout():
     import httpx

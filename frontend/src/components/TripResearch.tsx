@@ -148,6 +148,7 @@ export default function TripResearch({place, start, days, travelers, style}: {pl
         <div className="research-card-meta"><span>{card.date_checked ? 'Date-checked offer' : 'Discovery · availability not confirmed'}</span><span>{card.source === 'official' ? 'Official source' : card.source}</span></div>
         <h5><a href={card.url} target="_blank" rel="noreferrer">{card.title}<Icon name="open_in_new"/></a></h5>
         <p>{card.description}</p>
+        {card.activity_date && <p className="research-unconfirmed">Activity date: {card.activity_date}</p>}
         {card.price ? <div className="research-price"><strong>{card.price.currency} {Number(card.price.amount).toLocaleString('en-IN')}</strong><span>{card.price.basis}</span><small>Taxes: {card.price.taxes || 'Not confirmed'}</small><small>Cancellation: {card.price.cancellation || 'Not confirmed'}</small></div> : category !== 'essentials' && <p className="research-unconfirmed">Price: Not confirmed</p>}
         {category !== 'essentials' && <p className="research-unconfirmed">Availability: {card.availability === 'not_confirmed' ? 'Not confirmed' : card.availability}</p>}
         {card.excerpt && <details><summary>Read source excerpt</summary><p>{card.excerpt}</p></details>}
