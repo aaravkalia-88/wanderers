@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title description">
+  <title id="title">Wanderer — TinyFish travel research for Kritical Hacks 2026.</title>
+  <desc id="description">A cream travel field guide with coral lettering, teal contour lines, a decorative winding trail and a passport stamp.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#174b49" stroke-opacity=".045"/></pattern>
+    <clipPath id="contours"><path d="M660 0h540v520H660z"/></clipPath>
+  </defs>
+  <path fill="#f7f3e9" d="M0 0h1200v520H0z"/>
+  <path fill="url(#grid)" d="M0 0h1200v520H0z"/>
+  <path d="M48 48h1104M48 472h1104" stroke="#174b49" stroke-opacity=".25"/>
+  <g fill="#174b49" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3"><text x="50" y="30">WANDERER / FIELD NOTES</text><text x="1150" y="30" text-anchor="end">INDIA · KRITICAL HACKS 2026</text></g>
+  <g clip-path="url(#contours)" fill="none" stroke="#174b49" stroke-opacity=".14" stroke-width="1.2">
+    <path d="M1225-40C990-60 1070 83 900 90S640 220 745 290 825 394 678 540"/>
+    <path d="M1245-20C1010-40 1090 103 920 110S660 240 765 310 845 414 698 560"/>
+    <path d="M1265 0C1030-20 1110 123 940 130S680 260 785 330 865 434 718 580"/>
+    <path d="M1285 20C1050 0 1130 143 960 150S700 280 805 350 885 454 738 600"/>
+    <path d="M1305 40C1070 20 1150 163 980 170S720 300 825 370 905 474 758 620"/>
+    <path d="M1325 60C1090 40 1170 183 1000 190S740 320 845 390 925 494 778 640"/>
+    <path d="M1345 80C1110 60 1190 203 1020 210S760 340 865 410 945 514 798 660"/>
+    <path d="M1365 100C1130 80 1210 223 1040 230S780 360 885 430 965 534 818 680"/>
+  </g>
+  <g fill="#174b49">
+    <text x="48" y="154" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="800" letter-spacing="-4">WANDERER<tspan fill="#d94e3d">.</tspan></text>
+    <text x="52" y="225" font-family="Georgia, 'Times New Roman', serif" font-size="45">Somewhere less</text>
+    <text x="52" y="282" font-family="Georgia, 'Times New Roman', serif" font-size="53" font-style="italic" fill="#c44232">ordinary.</text>
+    <text x="54" y="337" font-family="Arial, Helvetica, sans-serif" font-size="18">Beyond the guidebooks. Backed by sources.</text>
+    <text x="54" y="366" font-family="Arial, Helvetica, sans-serif" font-size="18">Travel research powered by TinyFish.</text>
+  </g>
+  <path d="M735 414C653 347 912 345 876 265S720 202 799 145 1003 130 1024 81" fill="none" stroke="#d94e3d" stroke-width="3" stroke-dasharray="6 8" stroke-linecap="round"/>
+  <g fill="#f7f3e9" stroke="#174b49" stroke-width="3"><circle cx="735" cy="414" r="7"/><circle cx="799" cy="145" r="7"/></g>
+  <circle cx="876" cy="265" r="8" fill="#d94e3d" stroke="#f7f3e9" stroke-width="4"/>
+  <g fill="#174b49" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="2"><text x="814" y="136">TAKE THE DETOUR</text><text x="756" y="438">KEEP THE MEMORY</text></g>
+  <g transform="translate(1047 358) rotate(-12)">
+    <circle r="85" fill="#f7f3e9" stroke="#d94e3d" stroke-width="2"/>
+    <circle r="75" fill="none" stroke="#d94e3d" stroke-dasharray="2 4"/>
+    <g fill="#c44232" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"><text y="-29" font-size="10" letter-spacing="3">A LITTLE LOST</text><text y="4" font-size="23" font-weight="700" letter-spacing="1">WANDER</text><text y="29" font-size="23" font-weight="700" letter-spacing="2">OFTEN</text><text y="53" font-size="10" letter-spacing="3">EST. 2026</text></g>
+  </g>
+  <g fill="#174b49" font-family="Arial, Helvetica, sans-serif" font-size="12" letter-spacing="2"><text x="50" y="498">DISCOVER → RESEARCH → EXPLORE → REMEMBER</text><text x="1150" y="498" text-anchor="end">SMALL FOOTPRINTS. LASTING STORIES.</text></g>
+</svg>
