@@ -5,13 +5,13 @@
 <p align="center">
   <a href="https://wanderers-znqi.vercel.app"><strong>Explore Wanderer ↗</strong></a> &nbsp; · &nbsp;
   <a href="#tinyfish-the-research-behind-the-journey">TinyFish integration</a> &nbsp; · &nbsp;
-  <a href="#try-the-hackathon-flow">Demo walkthrough</a> &nbsp; · &nbsp;
+  <a href="#try-the-travel-planning-flow">Demo walkthrough</a> &nbsp; · &nbsp;
   <a href="docs/DEVELOPMENT.md">Run & deploy</a>
 </p>
 
 # A place to find your elsewhere.
 
-**Built for Kritical Hacks 2026 · Travel research powered by TinyFish.**
+**Travel research powered by TinyFish.**
 
 Wanderer turns India's lesser-known places into journeys worth keeping. Explore an interactive atlas, research a trip with **TinyFish**, compare stays and experiences, and bring the journey home as a stamp in your personal passport.
 
@@ -56,9 +56,9 @@ Guests and account holders pay nothing. There is no checkout, subscription, upgr
 
 [Integration setup, source gates and limits](docs/TINYFISH.md) · [Test-first implementation evidence](docs/TINYFISH.tdd.md)
 
-## Try the hackathon flow
+## Try the travel planning flow
 
-For the **Kritical Hacks 2026** demo:
+Explore Wanderer's travel planning and research features:
 
 1. Run the frontend and FastAPI locally using the [development guide](docs/DEVELOPMENT.md). Open **Trips** (`/planner`) and choose a destination, dates and travel style.
 2. Open **Research this trip → Trip essentials → Find sources**. Follow a source link or expand its fetched excerpt.

@@ -89,7 +89,7 @@ linter is configured. CodeRabbit CLI was unavailable in this session; no
 CodeRabbit review is claimed.
 
 Both agreed planner options are included: source-backed trip essentials and
-stays/experiences comparison. The hackathon README highlights Search/Fetch
+stays/experiences comparison. The README highlights Search/Fetch
 discovery and asynchronous Agent checks, distinguishing implemented behavior,
 fixture tests and supplier rollout gates. No production backend was deployed.
 At the user's final instruction, this release covers the features,

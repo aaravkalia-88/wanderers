@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title description">
-  <title id="title">Wanderer — TinyFish travel research for Kritical Hacks 2026.</title>
+  <title id="title">Wanderer — Travel research powered by TinyFish.</title>
   <desc id="description">A cream travel field guide with coral lettering, teal contour lines, a decorative winding trail and a passport stamp.</desc>
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#174b49" stroke-opacity=".045"/></pattern>
@@ -8,7 +8,7 @@
   <path fill="#f7f3e9" d="M0 0h1200v520H0z"/>
   <path fill="url(#grid)" d="M0 0h1200v520H0z"/>
   <path d="M48 48h1104M48 472h1104" stroke="#174b49" stroke-opacity=".25"/>
-  <g fill="#174b49" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3"><text x="50" y="30">WANDERER / FIELD NOTES</text><text x="1150" y="30" text-anchor="end">INDIA · KRITICAL HACKS 2026</text></g>
+  <g fill="#174b49" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3"><text x="50" y="30">WANDERER / FIELD NOTES</text><text x="1150" y="30" text-anchor="end">INDIA · FIELD GUIDE</text></g>
   <g clip-path="url(#contours)" fill="none" stroke="#174b49" stroke-opacity=".14" stroke-width="1.2">
     <path d="M1225-40C990-60 1070 83 900 90S640 220 745 290 825 394 678 540"/>
     <path d="M1245-20C1010-40 1090 103 920 110S660 240 765 310 845 414 698 560"/>
