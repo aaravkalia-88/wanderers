@@ -123,11 +123,14 @@ The public frontend is **[wanderers-znqi.vercel.app](https://wanderers-znqi.verc
 
 [Local setup & deployment guide](docs/DEVELOPMENT.md) · [Vercel verification](docs/VERCEL_DEPLOYMENT.tdd.md) · [Encrypted CARTO setup](docs/CARTO_ENV.tdd.md)
 
+**Rechecked on 22 November 2026.** The frontend passed 34 tests and the TypeScript/Vite production build succeeded. The backend passed 48 pytest tests with temporary databases and mocked providers. [Tested revision](https://github.com/aaravkalia-88/wanderers/commit/a77a95d367acf7bc9d209b9745b6a5869120c844)
+
 ```sh
 npm --prefix frontend test
 npm --prefix frontend run build
 cd backend
-venv/bin/python -m unittest discover -s tests -v
+venv/bin/python -m pip install pytest
+venv/bin/python -m pytest tests -q
 ```
 
 Research tests mock the provider and use temporary databases. They cover ownership, validation, duplicate requests, concurrent budget reservations, cancellation, lost starts, settlement and migration preservation without charges. The fixture-only browser harness checks both tabs, reload recovery, stale responses, keyboard controls and mobile/dark layouts. See [the evidence report](docs/TINYFISH.tdd.md) for exact checks and limits.
