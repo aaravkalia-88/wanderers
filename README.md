@@ -123,7 +123,7 @@ The public frontend is **[wanderers-znqi.vercel.app](https://wanderers-znqi.verc
 
 [Local setup & deployment guide](docs/DEVELOPMENT.md) · [Vercel verification](docs/VERCEL_DEPLOYMENT.tdd.md) · [Encrypted CARTO setup](docs/CARTO_ENV.tdd.md)
 
-**Rechecked on 22 November 2026.** The frontend passed 34 tests and the TypeScript/Vite production build succeeded. The backend passed 48 pytest tests with temporary databases and mocked providers. [Tested revision](https://github.com/aaravkalia-88/wanderers/commit/a77a95d367acf7bc9d209b9745b6a5869120c844)
+**Rechecked on 22 November 2026.** The frontend passed **34 tests** and the TypeScript/Vite build succeeded. The backend passed **48 pytest tests** with temporary databases and mocked providers. The suite exercises source validation, budget reservations, cancellation, stale results, and migration preservation. [Tested revision](https://github.com/aaravkalia-88/wanderers/commit/d676fd578dd8e1fef566dbfb3c7078d1000f2d43)
 
 ```sh
 npm --prefix frontend test
